@@ -25,7 +25,7 @@ router.get(`/:id`, async (req, res) => {
 });
 
 // post method
-router.post(`/`, async (req, res) => {
+router.post(`/admin/`, async (req, res) => {
   let category = new Category({
     name: req.body.name,
   });
@@ -40,7 +40,7 @@ router.post(`/`, async (req, res) => {
 });
 
 // update category
-router.put('/:id', async (req, res) => {
+router.put('/admin/:id', async (req, res) => {
   // parameter and updated data, 2 parameters, third paramerte is {new : true} meaning return new updated data.
   const category = await Category.findByIdAndUpdate(
     req.params.id,
@@ -59,7 +59,7 @@ router.put('/:id', async (req, res) => {
 
 // delete method
 //params name could be anything and same should be placed in req.params.<idName>
-router.delete('/:id', (req, res) => {
+router.delete('/admin/:id', (req, res) => {
   // findByIdAndRemove is deprecated dont use.
   Category.findByIdAndDelete(req.params.id)
     .then((category) => {

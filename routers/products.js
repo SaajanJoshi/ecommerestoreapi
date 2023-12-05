@@ -44,7 +44,7 @@ router.get(`/:id`, async (req, res) => {
 });
 
 // post method
-router.post(`/`, async (req, res) => {
+router.post(`/admin/`, async (req, res) => {
   // if category dont exist no product created
   const category = await Category.findById(req.body.category);
   if (!category) {
@@ -84,7 +84,7 @@ router.post(`/`, async (req, res) => {
 });
 
 // update category
-router.put('/:id', async (req, res) => {
+router.put('/admin/:id', async (req, res) => {
   // to check valid id or not
   if (!mongoose.isValidObjectId(req.params.id)) {
     res.status(400).send('Invalid Product ID');
@@ -116,7 +116,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // delete method
-router.delete('/:id', async (req, res) => {
+router.delete('/admin/:id', async (req, res) => {
   // to check valid id or not
   if (!mongoose.isValidObjectId(req.params.id)) {
     res.status(400).send('Invalid Product ID');
@@ -151,21 +151,9 @@ router.delete('/:id', async (req, res) => {
 });
 
 // get count of products
-router.get(`/get/count`, async (req, res) => {
+router.get(`/admin/get/count`, async (req, res) => {
   const productCount = await Product.countDocuments((count) => {});
 
-  if (!productCount) {
-    return res.status(500).json({ success: false });
-  }
-
-  return res.send(productCount);
-});
-
-// get featured products
-router.get(`/get/featured`, async (req, res) => {
-  const productCount = await Product.find({
-    isFeatured: true,
-  });
   if (!productCount) {
     return res.status(500).json({ success: false });
   }

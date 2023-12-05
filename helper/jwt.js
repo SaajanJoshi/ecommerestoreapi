@@ -14,8 +14,8 @@ function authJwt() {
     path: [
       { url: /\/api\/v1\/products/, methods: ['GET', 'OPTIONS'] },
       { url: /\/api\/v1\/categories/, methods: ['GET', 'OPTIONS'] },
-      /\/api\/v1\/login/,
-      /\/api\/v1\/register/,
+      /\/api\/v1\/users\/login/,
+      /\/api\/v1\/users\/register/,
     ],
   });
 }
@@ -25,7 +25,18 @@ function authJwt() {
 //
 async function isRevoked(req, jwt) {
   const payload = jwt.payload;
-  if (!payload.isAdmin) {
+
+  const restrictedRoutes = [
+    '/api/v1/categories/admin',
+    '/api/v1/products/admin',
+    '/api/v1/orders/admin',
+    // Add more patterns as needed
+  ];
+
+  if (
+    !payload.isAdmin &&
+    restrictedRoutes.some((pattern) => req.originalUrl.includes(pattern))
+  ) {
     return true;
   }
   return false;

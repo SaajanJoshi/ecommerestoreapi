@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 // json web token for authorization
 const jwt = require('jsonwebtoken');
 
-router.get(`/`, async (req, res) => {
+router.get(`/admin/`, async (req, res) => {
   const userList = await User.find().select('-passwordHash');
 
   if (!userList) {
@@ -19,7 +19,7 @@ router.get(`/`, async (req, res) => {
 });
 
 // post method
-router.post(`/`, async (req, res) => {
+router.post(`/admin/`, async (req, res) => {
   let user = new User({
     name: req.body.name,
     email: req.body.email,

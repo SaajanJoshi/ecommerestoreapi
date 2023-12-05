@@ -28,6 +28,10 @@ const orderSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
+  status: {
+    type: String,
+    default: 'pending',
+  },
   dateOrdered: {
     type: Date,
     default: Date.now,
