@@ -29,9 +29,7 @@ app.use(`${api}/orders`, orderRoutes);
 
 // database
 mongoose
-  .connect(process.env.CONNECTION_STRING, {
-    dbName: 'fullstack',
-  })
+  .connect(process.env.CONNECTION_STRING)
   .then(() => {
     console.log('Connected with database!!!!');
   })
