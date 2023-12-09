@@ -7,7 +7,9 @@ const productSchema = mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
+  },
+  imgUrl: {
+    type: String,
   },
   price: {
     type: Number,
@@ -20,7 +22,6 @@ const productSchema = mongoose.Schema({
   },
   countInStock: {
     type: Number,
-    required: true,
     min: 0,
     max: 255,
   },

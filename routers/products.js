@@ -58,6 +58,7 @@ router.post(`/admin/`, async (req, res) => {
     price: req.body.price,
     category: req.body.category,
     countInStock: req.body.countInStock,
+    imgUrl: req.body.imgUrl,
   });
 
   // Using regular promise
@@ -104,6 +105,7 @@ router.put('/admin/:id', async (req, res) => {
       price: req.body.price,
       category: req.body.category,
       countInStock: req.body.countInStock,
+      imgUrl: req.body.imgUrl,
     },
     { new: true }
   );
